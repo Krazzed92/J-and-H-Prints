@@ -109,9 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 heroProductsElement.style.backgroundImage = 
                     `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${images[currentIndex]}')`;
                 heroProductsElement.classList.remove('fade-out');
-            }, 3000); // Fixed duration to match fade-out transition
+            }, 500); // Fixed duration to match fade-out transition
         }
-        setInterval(changeBackground, 6000);
+        setInterval(changeBackground, 3000);
     }
 
     // Category filter
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function() {
             );
             addToCart(
                 'light-2', 
-                'Full Spectrum LED Grow Light Bulb', 
+                'Full Spectr+um LED Grow Light Bulb', 
                 18.99, 
                 'Images/Products/lights/bulb-products.webp'
             );
@@ -331,3 +331,25 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartBadge();
     initializeCart();
 });
+
+// section opacity transition effect
+
+    // script.js
+    document.addEventListener('DOMContentLoaded', function() {
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
+                }
+            });
+        }, {
+            threshold: 0.2 // Adjust the threshold as needed
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
